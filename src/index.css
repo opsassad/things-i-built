@@ -1,0 +1,415 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://cdn.quilljs.com/1.3.7/quill.snow.css');
+@import './styles/tiptap.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
+    --scrollbar-width: 8px;
+    --scrollbar-track: rgb(241 245 249 / 0.6);
+    --scrollbar-thumb: rgb(203 213 225 / 0.8);
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: calc(var(--scrollbar-width) / 2);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(148 163 184 / 0.8);
+  }
+
+  /* Dark mode scrollbar */
+  .dark ::-webkit-scrollbar-track {
+    background: rgb(30 41 59 / 0.6);
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgb(71 85 105 / 0.8);
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: rgb(100 116 139 / 0.8);
+  }
+
+  /* Custom Selection Styles */
+  ::selection {
+    @apply bg-gray-900 text-white;
+  }
+  ::-moz-selection {
+    @apply bg-gray-900 text-white;
+  }
+
+  /* Dark mode selection */
+  .dark ::selection {
+    @apply bg-gray-100 text-gray-900;
+  }
+  .dark ::-moz-selection {
+    @apply bg-gray-100 text-gray-900;
+  }
+
+  /* Custom selection for specific elements */
+  .prose ::selection {
+    @apply bg-gray-900/90 text-white;
+  }
+  .prose ::-moz-selection {
+    @apply bg-gray-900/90 text-white;
+  }
+
+  :root {
+    --background: 240 5% 98%;
+    --foreground: 240 10% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 15%;
+
+    --primary: 240 5% 30%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 240 5% 95%;
+    --secondary-foreground: 240 5% 30%;
+
+    --muted: 240 5% 95%;
+    --muted-foreground: 240 5% 45%;
+
+    --accent: 240 5% 95%;
+    --accent-foreground: 240 5% 30%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 240 5% 50%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 240 10% 8%;
+    --foreground: 240 5% 90%;
+
+    --card: 240 10% 10%;
+    --card-foreground: 240 5% 90%;
+
+    --popover: 240 10% 10%;
+    --popover-foreground: 240 5% 90%;
+
+    --primary: 240 5% 75%;
+    --primary-foreground: 240 10% 15%;
+
+    --secondary: 240 6% 15%;
+    --secondary-foreground: 240 5% 75%;
+
+    --muted: 240 6% 15%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 240 6% 15%;
+    --accent-foreground: 240 5% 75%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 240 5% 90%;
+
+    --border: 240 6% 20%;
+    --input: 240 6% 20%;
+    --ring: 240 5% 65%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-[hsl(var(--border))];
+  }
+
+  body {
+    @apply bg-zinc-50 text-zinc-700 font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold text-zinc-700;
+  }
+}
+
+.container-custom {
+  @apply container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.section-padding {
+  @apply py-12 sm:py-20;
+}
+
+/* Rich Text Editor Styles */
+.quill {
+  @apply rounded-md overflow-hidden;
+}
+
+.ql-toolbar.ql-snow {
+  @apply border border-zinc-200 bg-white rounded-t-md;
+}
+
+.ql-container.ql-snow {
+  @apply border border-zinc-200 border-t-0 bg-white rounded-b-md;
+}
+
+.ql-editor {
+  @apply min-h-[200px] prose prose-zinc max-w-none;
+}
+
+.ql-editor.ql-blank::before {
+  @apply text-zinc-400 font-normal not-italic;
+}
+
+/* Dark mode support */
+.dark .ql-toolbar.ql-snow,
+.dark .ql-container.ql-snow {
+  @apply border-zinc-700 bg-zinc-800;
+}
+
+.dark .ql-editor {
+  @apply prose-invert;
+}
+
+.dark .ql-snow .ql-stroke {
+  @apply stroke-zinc-400;
+}
+
+.dark .ql-snow .ql-fill {
+  @apply fill-zinc-400;
+}
+
+.dark .ql-snow .ql-picker {
+  @apply text-zinc-400;
+}
+
+.dark .ql-snow .ql-picker-options {
+  @apply bg-zinc-800 border-zinc-700;
+}
+
+/* Image Alignment Styles */
+/* Ensure wrapper clears floats and establishes context */
+.image-resizer-wrapper {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  clear: both;
+}
+
+/* Apply text-align based on data attribute - Increased specificity */
+.prose .image-resizer-wrapper[data-alignment="left"],
+.rendered-content .image-resizer-wrapper[data-alignment="left"],
+.prose-content .image-resizer-wrapper[data-alignment="left"],
+.prose-content-preview .image-resizer-wrapper[data-alignment="left"] {
+  text-align: left;
+}
+
+.prose .image-resizer-wrapper[data-alignment="center"],
+.rendered-content .image-resizer-wrapper[data-alignment="center"],
+.prose-content .image-resizer-wrapper[data-alignment="center"],
+.prose-content-preview .image-resizer-wrapper[data-alignment="center"] {
+  text-align: center;
+}
+
+.prose .image-resizer-wrapper[data-alignment="right"],
+.rendered-content .image-resizer-wrapper[data-alignment="right"],
+.prose-content .image-resizer-wrapper[data-alignment="right"],
+.prose-content-preview .image-resizer-wrapper[data-alignment="right"] {
+  text-align: right;
+}
+
+/* Style the inner resizer div to respect text-align */
+.image-resizer {
+  position: relative;
+  display: inline-block; /* This ensures it respects text-align */
+}
+
+/* Additional styles for images in prose content */
+.prose-content,
+.prose-content-preview {
+  max-width: 100%;
+}
+
+/* Remove background styling from project and thought images */
+.prose-content img,
+.prose img,
+.rendered-content img,
+.prose-content-preview img {
+  max-width: 100%;
+  height: auto;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Remove rounded corners and other decorative styles from content images */
+.prose-content img,
+.prose-content-preview img {
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+/* Keep the parent containers clean */
+.prose-content .image-resizer-wrapper,
+.prose-content-preview .image-resizer-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.image-resizer {
+  position: relative;
+  display: inline-block;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Preserve explicit width on images */
+.prose-content img[width],
+.prose-content-preview img[width] {
+  max-width: 100%; /* Ensure responsive behavior */
+}
+
+/* Direct styling for explicit width values - for when attr() isn't supported */
+.prose-content img[width="100"],
+.prose-content-preview img[width="100"] { width: 100px; }
+.prose-content img[width="200"],
+.prose-content-preview img[width="200"] { width: 200px; }
+.prose-content img[width="300"],
+.prose-content-preview img[width="300"] { width: 300px; }
+.prose-content img[width="400"],
+.prose-content-preview img[width="400"] { width: 400px; }
+.prose-content img[width="500"],
+.prose-content-preview img[width="500"] { width: 500px; }
+.prose-content img[width="600"],
+.prose-content-preview img[width="600"] { width: 600px; }
+.prose-content img[width="700"],
+.prose-content-preview img[width="700"] { width: 700px; }
+.prose-content img[width="800"],
+.prose-content-preview img[width="800"] { width: 800px; }
+.prose-content img[width="900"],
+.prose-content-preview img[width="900"] { width: 900px; }
+.prose-content img[width="1000"],
+.prose-content-preview img[width="1000"] { width: 1000px; }
+
+/* Support percentage-based widths */
+.prose-content img[width="25%"],
+.prose-content-preview img[width="25%"] { width: 25%; }
+.prose-content img[width="50%"],
+.prose-content-preview img[width="50%"] { width: 50%; }
+.prose-content img[width="75%"],
+.prose-content-preview img[width="75%"] { width: 75%; }
+.prose-content img[width="100%"],
+.prose-content-preview img[width="100%"] { width: 100%; }
+
+/* Respect center/right alignment with width setting */
+.prose-content img[data-align="center"][width],
+.prose-content-preview img[data-align="center"][width] {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.prose-content img[data-align="right"][width],
+.prose-content-preview img[data-align="right"][width] {
+  margin-left: auto;
+  margin-right: 0;
+  display: block;
+}
+
+/* For contained images that maintain responsive behavior */
+.image-resizer-wrapper img {
+  width: 100%;
+  height: auto;
+}
+
+/* Text alignment classes for all content types */
+.prose-content .text-left,
+.prose .text-left,
+.prose-content-preview .text-left {
+  text-align: left !important;
+}
+
+.prose-content .text-center,
+.prose .text-center,
+.prose-content-preview .text-center {
+  text-align: center !important;
+}
+
+.prose-content .text-right,
+.prose .text-right,
+.prose-content-preview .text-right {
+  text-align: right !important;
+}
+
+/* Enhanced handling for centered content */
+.prose-content div[style*="text-align: center"],
+.prose-content-preview div[style*="text-align: center"] {
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+
+/* Handle alignment for plain images without wrappers */
+.prose-content img[data-align="left"],
+.prose-content-preview img[data-align="left"] {
+  margin-left: 0;
+  margin-right: auto;
+  display: block;
+}
+
+.prose-content img[data-align="center"],
+.prose-content-preview img[data-align="center"] {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.prose-content img[data-align="right"],
+.prose-content-preview img[data-align="right"] {
+  margin-left: auto;
+  margin-right: 0;
+  display: block;
+}
+
+/* Custom shadow effects */
+.shadow-glow {
+  box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.6),
+              0 0 30px 10px rgba(255, 255, 255, 0.3),
+              0 0 45px 15px rgba(255, 255, 255, 0.15);
+}

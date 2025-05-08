@@ -1,0 +1,36 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Top Left Triangle -->
+  <path d="M20 20 L100 20 L100 100 Z" fill="url(#gradient1)" />
+  
+  <!-- Top Right Triangle -->
+  <path d="M100 20 L180 20 L100 100 Z" fill="url(#gradient2)" />
+  
+  <!-- Bottom Left Triangle -->
+  <path d="M20 180 L100 100 L100 180 Z" fill="url(#gradient3)" />
+  
+  <!-- Bottom Right Triangle -->
+  <path d="M100 180 L180 180 L100 100 Z" fill="url(#gradient4)" />
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="gradient1" x1="20" y1="20" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#000000" />
+      <stop offset="100%" stop-color="#333333" />
+    </linearGradient>
+    
+    <linearGradient id="gradient2" x1="180" y1="20" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#333333" />
+      <stop offset="100%" stop-color="#666666" />
+    </linearGradient>
+    
+    <linearGradient id="gradient3" x1="20" y1="180" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#666666" />
+      <stop offset="100%" stop-color="#999999" />
+    </linearGradient>
+    
+    <linearGradient id="gradient4" x1="180" y1="180" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#999999" />
+      <stop offset="100%" stop-color="#FFFFFF" />
+    </linearGradient>
+  </defs>
+</svg> 

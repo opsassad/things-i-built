@@ -1,0 +1,77 @@
+.ProseMirror {
+  > * + * {
+    margin-top: 0.75em;
+  }
+
+  outline: none;
+
+  ul,
+  ol {
+    padding: 0 1rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.1;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem 0;
+  }
+
+  blockquote {
+    padding-left: 1rem;
+    border-left: 2px solid #ddd;
+  }
+
+  hr {
+    border: none;
+    border-top: 2px solid #ddd;
+    margin: 2rem 0;
+  }
+
+  a {
+    color: #68b5fb;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  p.is-editor-empty:first-child::before {
+    color: #adb5bd;
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+  }
+}
+
+/* Active states for toolbar buttons */
+[data-active="true"] {
+  background-color: #e5e7eb;
+  color: #111827;
+}
+
+/* Text alignment classes */
+.ProseMirror {
+  .text-left {
+    text-align: left;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+} 
