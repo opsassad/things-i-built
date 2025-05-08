@@ -50,5 +50,7 @@ const Index = () => {
     </div>
   );
 };
-
+// This is the landing page
 export default Index;
+
+
